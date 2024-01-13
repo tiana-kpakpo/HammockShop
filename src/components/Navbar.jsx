@@ -124,7 +124,18 @@ export default function Navbar() {
                 </svg>
               </div>
             </div>
-            {/* <div className="searchResults"> results </div> */}
+            {
+              isSearchExpand && results.length > 0 && (
+<div className="searchResults absolute top-full cursor-pointer w-96 flex flex-col rounded mt-2 max-h-32 overflow-y-auto bg-white shadow-md"> 
+           {results.map((results) => (
+            <div key={ results.id } className="py-2 px-4 border-b bg-white"> 
+            {results.name}
+            </div>
+           ))}
+             </div>
+              )
+            }
+            
           </div>
 
           <div className="dropdown dropdown-end">
