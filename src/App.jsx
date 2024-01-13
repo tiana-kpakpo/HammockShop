@@ -1,16 +1,22 @@
 import React from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Store from './components/Store'
+import Routes from './routes/routes'
+
+
+
+
 
 export default function App() {
   return (
     <>
-    <Navbar/>
 
-    <Store/>
+    {/* <Navbar/> */}
+
+
+    {/* <Login/> */}
+
     
-    <Footer/>
+    
+    {/* <Footer/> */}
     
     </>
   )

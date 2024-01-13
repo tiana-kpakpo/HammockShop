@@ -1,0 +1,5 @@
+.search-expanded {
+    height: 50vh; /* Adjust the height as needed */
+    transition: height 0.3s ease-in-out; /* Add a smooth transition effect */
+  }
+  
