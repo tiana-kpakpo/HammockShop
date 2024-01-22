@@ -4,19 +4,16 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   const [isSearchExpand, setIsSearchExpand] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const [results, setResults] = useState([]);
 
   const handleSearch = () => {
     setIsSearchExpand(!isSearchExpand);
-
-    // setSearchQuery('');
-    // setIsSearchExpand(false);
   };
 
   const handleEnterPress = (e) => {
     if (e.key === "Enter") {
-     setSearchQuery();
+      setSearchQuery();
       console.log("Performing search:", e.target.value);
     }
   };
@@ -26,8 +23,13 @@ export default function Navbar() {
       .then((response) => response.json())
       .then((json) => {
         const results = json.filter((user) => {
-          return value && user && user.name && user.name.toLowerCase().includes(value)
-        })
+          return (
+            value &&
+            user &&
+            user.name &&
+            user.name.toLowerCase().includes(value)
+          );
+        });
         setResults(results);
         console.log(results);
       });
@@ -37,7 +39,6 @@ export default function Navbar() {
     setSearchQuery(value);
     fetchData(value);
   };
-
 
   return (
     <>
@@ -84,12 +85,10 @@ export default function Navbar() {
         </div>
 
         <div className="navbar-end">
-
           <div className="input-group ">
             <div
-              className={`searchBarContainer flex items-center ${
-                isSearchExpand ? "ml-4" : ""
-              } transition-all ease-in-out duration-300`}
+              className={`searchBarContainer flex items-center ${isSearchExpand ? "ml-4" : ""
+                } transition-all ease-in-out duration-300`}
             >
               {isSearchExpand && (
                 <input
@@ -102,9 +101,8 @@ export default function Navbar() {
                 />
               )}
               <div
-                className={`btn btn-ghost btn-circle cursor-pointer transform transition-transform duration-300 ${
-                  isSearchExpand ? "rotate-0" : ""
-                }`}
+                className={`btn btn-ghost btn-circle cursor-pointer transform transition-transform duration-300 ${isSearchExpand ? "rotate-0" : ""
+                  }`}
                 onClick={handleSearch}
               >
                 <svg
@@ -124,18 +122,15 @@ export default function Navbar() {
                 </svg>
               </div>
             </div>
-            {
-              isSearchExpand && results.length > 0 && (
-<div className="searchResults absolute top-full cursor-pointer w-96 flex flex-col rounded mt-2 max-h-32 overflow-y-auto bg-white shadow-md"> 
-           {results.map((results) => (
-            <div key={ results.id } className="py-2 px-4 border-b bg-white"> 
-            {results.name}
-            </div>
-           ))}
-             </div>
-              )
-            }
-            
+            {isSearchExpand && results.length > 0 && (
+              <div className="searchResults absolute top-full cursor-pointer w-96 flex flex-col rounded mt-2 max-h-32 overflow-y-auto bg-white shadow-md">
+                {results.map((results) => (
+                  <div key={results.id} className="py-2 px-4 border-b bg-white">
+                    {results.name}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="dropdown dropdown-end">
